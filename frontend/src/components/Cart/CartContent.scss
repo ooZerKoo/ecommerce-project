@@ -1,0 +1,12 @@
+@import '../../colors.scss';
+
+.ant-badge-count {
+    background-color: $green;
+    color: $light;
+    box-shadow: 0 0 0 1px $green inset;
+}
+
+.cart-total {
+    font-size: 1.5eM;
+    margin-top: 2eM;
+}

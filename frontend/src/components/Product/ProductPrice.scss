@@ -1,0 +1,21 @@
+@import '../../colors.scss';
+
+.price_container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 200px;
+    margin: 1.5eM 0;
+    max-width: 100%;
+    .price {
+        font-weight: bold;
+        color: $primary;
+    }
+    .price_before {
+        text-decoration: line-through;
+        color: $grey;
+    }
+    .discount {
+        color: $red;
+    }
+}
