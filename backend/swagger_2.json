@@ -1,0 +1,94 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api del eCommerce",
+    "version": "1.0.0",
+    "title": "eCommerce",
+    "contact": {
+      "email": "urimartipresta@gmail.com"
+    }
+  },
+  "tags": [{
+      "name": "user"
+    },
+    {
+      "name": "product"
+    },
+    {
+      "name": "category"
+    }
+  ],
+  "paths": {
+    "/user/login/": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Inicia Sesión",
+        "description": "",
+        "operationId": "loginUser",
+        "produces" : ["application/json"],
+        "schema": {
+          "$ref": "#/definitions/User"
+        },
+        "parameters": [{
+            "in": "formData",
+            "name": "user",
+            "description": "Usuario",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "Contraseña",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "api_key",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "User Status"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    }
+  }
+}
