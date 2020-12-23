@@ -19,6 +19,8 @@ const HeaderContent = props => {
 
     const userToken = props.user.token
     const user = props.user.user
+    
+    const disabled = (props.category.loading || props.product.loading || props.products.loading) ? true : false
 
     const style = {
         fontSize: '1.3eM'
@@ -67,13 +69,13 @@ const HeaderContent = props => {
         if ((item.logged && userToken) || (item.noLogged && !userToken)) {
             if (item.submenu) {
                 return (
-                    <SubMenu className={item.class} key={item.key} title={item.name}>
+                    <SubMenu disabled={disabled} className={item.class} key={item.key} title={item.name}>
                         {item.items.map(i => getMenuItem(i))}
                     </SubMenu>
                 )
             } else {
                 return (
-                    <Menu.Item className={item.class} key={item.key} icon={item.icon} onClick={item.onclick}>
+                    <Menu.Item disabled={disabled} className={item.class} key={item.key} icon={item.icon} onClick={item.onclick}>
                         {item.url ? <NavLink to={item.url} >{item.name}</NavLink> : item.name}
                     </Menu.Item>
                 )
@@ -97,7 +99,10 @@ const HeaderContent = props => {
 const mapSateToProps = state => ({
     menu: state.menu,
     user: state.user,
-    cart: state.cart
+    cart: state.cart,
+    category: state.category,
+    products: state.products,
+    product: state.product,
 })
 
 const mapDispatchToProps = dispatch => ({

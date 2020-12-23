@@ -2,20 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { NavLink, useLocation } from 'react-router-dom'
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Col, Row } from 'antd';
 
 const BreadCrumbContent = props => {
 
     const location = useLocation();
     const pathSnippets = location.pathname.split('/').filter(i => i);
-
+    const urls = []
     const extraBreadcrumbItems = pathSnippets.map((_, index) => {
-        const url = `/${pathSnippets[index]}`;
+        const url = `/${pathSnippets[index]}`
+        urls.push(url)
         const name = props.breadcrumb.list.filter(v => v.url === url)
         if (name && name.length > 0) {
             return (
-                <Breadcrumb.Item key={url}>
-                    <NavLink key={url} to={url}>{name[0].name}</NavLink>
+                <Breadcrumb.Item key={urls.join('')}>
+                    <NavLink to={urls.join('')}>{name[0].name}</NavLink>
                 </Breadcrumb.Item>
             );
         } else {
@@ -29,7 +30,13 @@ const BreadCrumbContent = props => {
     ].concat(extraBreadcrumbItems);
 
     if (!props.breadcrumb.loading) {
-        return <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+        return (
+            <Row gutter={[16, 16]}>
+                <Col span={24} style={{margin: '0.5eM auto'}}>
+                    <Breadcrumb>{breadcrumbItems}</Breadcrumb>
+                </Col>
+            </Row>
+        )
     }
 }
 

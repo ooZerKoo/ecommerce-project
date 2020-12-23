@@ -1,14 +1,18 @@
-import { apiGetProductsCategory, apiGetProductByUrl } from '../../api/product'
+import { apiGetProductsCategory } from '../../api/category'
+import { apiGetProductByUrl } from '../../api/product'
 import { setLoading, setBreadCrumb } from './global'
 
 
-export const setProductData = (product) => {
+export const setProductDataByUrl = (urlProduct) => {
     return dispatch => {
         setLoading(dispatch, 'product')
         setLoading(dispatch, 'breadcrumb')
-        apiGetProductByUrl(product)
+        apiGetProductByUrl(urlProduct)
             .then(data => {
-                setBreadCrumb(dispatch, data)
+                setBreadCrumb(dispatch, {
+                    name: data.name,
+                    url: data.url
+                })
                 setProduct(dispatch, data)
             })
     }
@@ -35,9 +39,17 @@ export const setProducts = (dispatch, products, idCategory) => {
     })
 }
 
+export const updateProducts = (dispatch, product) => {
+    return dispatch({
+        type: 'UPDATE_PRODUCTS',
+        payload: product
+    })
+}
+
 export const setProduct = (dispatch, product) => {
     return dispatch({
         type: 'SET_PRODUCT',
         payload: product
     })
 }
+

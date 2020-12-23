@@ -1,23 +1,7 @@
 import axios from 'axios'
 
 const protocol = process.env.REACT_APP_API_PROTOCOL || 'http://'
-const base = protocol + process.env.REACT_APP_API_URL + process.env.REACT_APP_PRODUCT_ROUTE
-
-delete axios.defaults.headers.common["Authorization"]
-
-export const apiGetProductByUrl = async (urlProduct, pagination = {}) => {
-    try {
-        const url = base + '/url/' + urlProduct
-        const r = await axios.get(url,{
-            params: {
-                ...pagination
-            }
-        })
-        return r.data
-    } catch (error) {
-        console.error(error)
-    }
-}
+const base = protocol + process.env.REACT_APP_API_URL + process.env.REACT_APP_VENDOR_ROUTE + process.env.REACT_APP_PRODUCT_ROUTE
 
 export const apiGetAllProducts = async (pagination = {}) => {
     try {
@@ -43,6 +27,7 @@ export const apiGetTotalAllProducts = async () => {
     }
 }
 
+
 export const apiGetProductById = async (idProduct) => {
     try {
         const url = base + '/id/' + idProduct
@@ -53,12 +38,44 @@ export const apiGetProductById = async (idProduct) => {
     }
 }
 
+export const apiDeleteProduct = async (idProduct, product) => {
+    try {
+        const url = base + '/' + idProduct
+        const r = await axios.delete(url)
+        return r
+    } catch (error) {
+        console.error(error)
+    } 
+}
+
 export const apiUpdateProduct = async (idProduct, product) => {
     try {
-        const url = base + idProduct
+        const url = base + '/' + idProduct
         const r = await axios.post(url, {...product})
         return r
     } catch (error) {
         console.error(error)
     } 
+}
+
+export const apiAddProduct = async (product) => {
+    try {
+        const url = base
+        const r = await axios.post(url, {...product})
+        return r
+    } catch (error) {
+        console.error(error)
+    } 
+}
+
+export const apiDeleteImageProduct = async (idProduct, img) => {
+    try {
+        const url = base + '/img/' + idProduct
+        const r = await axios.delete(url, {
+            params: { img }
+        }) 
+        return r
+    } catch (error) {
+        console.error(error)
+    }
 }

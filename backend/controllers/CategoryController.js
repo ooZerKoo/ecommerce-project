@@ -67,7 +67,35 @@ const CategoryController = {
         } catch (error) {
             showError(res, error.message)
         }
+    },
+    async getCategoryTree(req, res) {
+        try {
+            buildTree()
+                .then(data => showSuccess(res, data))
+                .catch(error => showError(res, error.message))
+        } catch (error) {
+            showError(res, error.message)
+        }
     }
+}
+
+const buildTree = async (idParent = null, categories = []) => {
+    const search = await getChildren(idParent)
+    if (search) {
+        search.map(i => {
+            const data = {
+                title: i.name,
+                key: i._id,
+            }
+            categories.push(data)
+        })
+    }
+    return categories
+}
+
+const getChildren = async (idParent) => {
+    const children = await Category.find({idParent: idParent})
+    return children
 }
 
 module.exports = CategoryController

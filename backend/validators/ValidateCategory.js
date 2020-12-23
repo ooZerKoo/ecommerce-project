@@ -1,27 +1,13 @@
 const Category = require('../models/Category')
 
-const {
-    showError
-} = require('../controllers/MessageController')
-const {
-    isName,
-    isNumber,
-    getCleanHtml,
-    getInteger,
-    getUrl
-} = require('./ValidateData')
+const { showError } = require('../controllers/MessageController')
+const { isName, getCleanHtml, getUrl } = require('./ValidateData')
 
 const ValidateCategory = {
     async validateCategory(req, res, next) {
         try {
-            const {
-                id
-            } = req.params
-            const {
-                name,
-                description,
-                url
-            } = req.body
+            const id = req.params.id
+            const { name, description, url, idParent } = req.body
 
             if (!isName(name))
                 return showError(res, 2003)
@@ -48,7 +34,8 @@ const ValidateCategory = {
             const category = {
                 name: name,
                 description: getCleanHtml(description),
-                url: urlCoded
+                url: urlCoded,
+                idParent: idParent,
             }
             req.category = category
             next()

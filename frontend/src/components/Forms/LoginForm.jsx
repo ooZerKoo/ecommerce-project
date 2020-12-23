@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { setLogin } from '../../services/redux/actions/user'
 
-import { Form, Button, Row, Col, Input, Divider, Alert } from 'antd'
+import { Form, Button, Row, Col, Input, Divider } from 'antd'
 import { NavLink } from 'react-router-dom'
 
 import './Form.scss'
@@ -53,8 +53,6 @@ const LoginForm = props => {
                             {row.type === 'password' ? <Input.Password size="large" /> : <Input size="large" />}
                         </Form.Item>
                     ))}
-
-                    {props.error && <Alert message={props.error} type="error" style={{marginBottom: '2eM'}} />}
 
                     <Form.Item wrapperCol={24}>
                         <Button type="primary" block size="large" htmlType="submit">Iniciar Sesión</Button>

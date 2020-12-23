@@ -32,14 +32,15 @@ const ProductSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-    }
+    },
+    images: []
 }, {
     toJSON: {
         virtuals: true
     }
 });
 
-ProductSchema.virtual('finalPrice').get(function() {
+ProductSchema.virtual('finalPrice').get(function () {
     let finalPrice = this.price;
     if (this.discount > 0) {
         if (this.discountType == 'amount') {

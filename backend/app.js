@@ -29,7 +29,8 @@ app.use(express.urlencoded({
 	extended: false
 }))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, 'public')))
+
+app.use('/statics', express.static(path.join(__dirname, 'uploads')))
 
 app.use(cors())
 app.use(process.env.PRODUCT_ROUTE, productsRouter)

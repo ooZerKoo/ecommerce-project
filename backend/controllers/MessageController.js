@@ -80,9 +80,10 @@ const successList = [
 
     // productos
     {id: 2001, value: 'Producto actualizado correctamente'},
-    {id: 2002, value: 'No se ha podido actualizar el Producto'},
+    {id: 2002, value: 'Imagen guardada correctamente'},
     {id: 2003, value: 'Producto creado correctamente'},
     {id: 2004, value: 'No se ha podido guardar el Producto'},
+    {id: 2005, value: 'Imagen eliminada correctamente'},
     
     // categorias
     {id: 3001, value: 'Categoría eliminada correctamente'},

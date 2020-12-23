@@ -31,12 +31,44 @@ const menu = (state = initialStateMenu, action) => {
     }
 }
 
+const initialStateCategories = {
+    loaded: false,
+    loading: false,
+    list: [],
+}
+
+const categories = (state = initialStateCategories, action) => {
+    switch (action.type) {
+        case 'SET_CATEGORIES':
+            return {
+                list: [
+                    ...action.payload
+                ],
+                loading: false,
+                loaded: true,
+            }
+
+        case 'SET_CATEGORIES_LOADING':
+            return {
+                ...state,
+                loading: true,
+                loaded: false,
+            }
+
+        case 'RESET_CATEGORIES':
+            return initialStateMenu
+
+        default:
+            return state
+    }
+}
+
 const initialBreadCrumb = {
     loading: false,
     list: [
         {
             url: '/',
-            name: 'Home'
+            name: 'Inicio'
         },
         {
             url: '/user',
@@ -53,6 +85,10 @@ const initialBreadCrumb = {
         {
             url: '/orders',
             name: 'Pedidos',
+        },
+        {
+            url: '/add',
+            name: 'Añadir',
         },
         {
             url: '/customers',
@@ -129,6 +165,19 @@ const product = (state = initialProduct, action) => {
                 loaded: false,
                 loading: true,
             }
+
+        case 'SET_PRODUCT_LOADED':
+            return {
+                ...state,
+                loaded: true,
+                loading: false,
+            }
+
+        case 'SET_PRODUCT_IMAGES':
+            return {
+                ...state,
+                images: action.payload
+            }
         
         default:
             return state
@@ -155,6 +204,18 @@ const products = (state = initialProducts, action) => {
                 loaded: true,
                 ...action.payload
             }
+
+        case 'UPDATE_PRODUCTS':
+            const newState = state.list
+            const product = action.payload
+            const returnState = newState.filter(v => v._id !== product._id)
+            returnState.push(product)
+            return {
+                loading: false,
+                loaded: true,
+                list: newState,
+            }
+        
         case 'SET_PRODUCTS_LOADING':
             return {
                 ...state,
@@ -348,16 +409,56 @@ const pagination = (state = initialPagination, action) => {
     }
 }
 
+const initialFilters = {
+    filter: null,
+    sort: null,
+}
+
+const filters = (state = initialFilters, action) => {
+    switch (action.type) {
+        case 'SET_FILTER_FILTERS':
+            return {
+                ...state,
+                filter: action.payload
+            }
+        case 'SET_SORT_FILTERS':
+            return {
+                ...state,
+                sort: action.payload
+            }
+        
+        case 'RESET_FILTER_FILTERS':
+            return {
+                ...state,
+                filter: null
+            }
+        case 'RESET_SORT_FILTERS':
+            return {
+                ...state,
+                sort: null
+            }
+
+        case 'RESET_ALL_FILTERS':
+            return initialFilters
+        
+        default:
+            return state
+    }
+}
+
+
 const reducer = combineReducers({
     button,
     menu,
     cart,
-    products,
     category,
+    categories,
     product,
+    products,
     user,
     error,
     pagination,
+    filters,
     breadcrumb,
 });
 

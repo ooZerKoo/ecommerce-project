@@ -11,8 +11,9 @@ import PaginationCategory from '../Pagination/PaginationCategory'
 const { Meta } = Card;
 
 const ProductList = props => {
+    
     if (!props.products.loading && props.idCategory && props.idCategory !== props.products.idCategory) {
-        props.getProducts(props.idCategory, props.pagination)
+        setTimeout(() => props.getProducts(props.idCategory, props.pagination), 1)
     }
 
     const renderProducts = () => {
@@ -21,7 +22,7 @@ const ProductList = props => {
 
     const renderProductsLoading = () => {
         const examples = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 12; i++) {
             examples.push(i)
         }
 

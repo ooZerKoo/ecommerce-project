@@ -8,7 +8,8 @@ const {
     isNumber,
     getCleanHtml,
     getInteger,
-    getUrl
+    getUrl,
+    getFloat
 } = require('./ValidateData')
 
 const ValidateProduct = {

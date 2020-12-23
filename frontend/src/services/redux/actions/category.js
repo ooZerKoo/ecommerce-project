@@ -1,5 +1,5 @@
 import { apiGetCategoryByUrl, apiGetTotalProductsCategory } from '../../api/category'
-import { setLoading, setBreadCrumb, setTotalPagination, setPagePagination, setLimitPagination } from './global'
+import { setLoading, setBreadCrumb, setTotalPagination, setPagePagination, setLimitPagination, resetPagination } from './global'
 import { setProductsData } from './product'
 
 
@@ -25,6 +25,7 @@ export const setCategory = (dispatch, category) => {
 
 export const setTotalPaginationCategory = idCategory => {
     return dispatch => {
+        resetPagination(dispatch)
         apiGetTotalProductsCategory(idCategory)
             .then(total => setTotalPagination(dispatch, total))
     }

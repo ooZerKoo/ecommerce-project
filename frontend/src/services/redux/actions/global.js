@@ -69,3 +69,16 @@ export const resetPagination = (dispatch) => {
         type: 'RESET_PAGINATION',
     })
 }
+
+export const updateFilters = (dispatch, filter) => {
+    return dispatch({
+        type: 'SET_FILTER_FILTERS',
+        payload: filter
+    })
+}
+
+export const resetFilters = (dispatch, filter) => {
+    return dispatch({
+        type: 'RESET_FILTER_FILTERS'
+    })
+}

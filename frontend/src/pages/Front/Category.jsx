@@ -13,7 +13,7 @@ const Category = props => {
     const description = props.category.description ? props.category.description : null
 
     if (!props.category.loading && props.category.url !== url) {
-        props.setCategoryData(url, props.pagination, true)
+        setTimeout(() => props.setCategoryData(url, props.pagination, true), 1)
     }
 
     return (
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setCategoryData: (category, pagination, isNew) => setCategoryData(category, pagination, isNew)(dispatch),
+    setCategoryData: (category) => setCategoryData(category)(dispatch),
 })
 
 const connected = connect(mapStateToProps, mapDispatchToProps)(Category)
