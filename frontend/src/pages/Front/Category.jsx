@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import ProductList from '../../components/Product/ProductList'
-
+import Html from '../../components/Html/Html'
 import { setCategoryData } from '../../services/redux/actions/category'
 
 const Category = props => {
@@ -19,7 +19,7 @@ const Category = props => {
     return (
         <React.Fragment>
             <h1>{name}</h1>
-            <h2>{description}</h2>
+            <h2><Html html={description} /></h2>
             <ProductList idCategory={idCategory} nameCategory={name} urlCategory={url} />
         </React.Fragment>
     )

@@ -9,7 +9,6 @@ const { getCategoryById, getAllCategories, deleteCategory, updateCategory, addCa
 const { validateCategory } = require('../validators/ValidateCategory')
 const { isLogged, isVendor } = require('../middlewares/Auth')
 const { setHistory, getHistory } = require('../middlewares/History')
-const { showSuccess } = require('../controllers/MessageController')
 
 router.use('*', isLogged, isVendor)
 

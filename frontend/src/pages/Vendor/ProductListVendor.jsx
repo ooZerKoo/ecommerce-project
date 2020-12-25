@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { getAllProducts, updatePaginationProduct, updatePaginationVendorProducts } from '../../services/redux/actions/vendor/product'
+import { getAllProducts } from '../../services/redux/actions/vendor/product'
 
 import { Button, Col, Input, Row, Space, Table } from 'antd'
 import { EditOutlined, SearchOutlined, PlusOutlined } from '@ant-design/icons'
@@ -20,7 +20,7 @@ const ProductListVendor = props => {
     }
 
     if (!props.products.loading && props.products.idCategory !== 'vendor') {
-        setTimeout(() => props.getAllProducts(props.pagination, 'vendor'), 1)
+        setTimeout(() => props.getAllProducts('vendor'), 1)
     }
 
     if (!props.categories.loading && !props.categories.loaded) {
@@ -181,16 +181,12 @@ const ProductListVendor = props => {
 const mapStateToProps = state => ({
     products: state.products,
     user: state.user,
-    pagination: state.pagination,
-    filters: state.filters,
     categories: state.categories,
 })
 
 const mapDispatchToProps = dispatch => ({
     getAllProducts: (pagination, id) => getAllProducts(pagination, id)(dispatch),
     getAllCategories: () => setCategories()(dispatch),
-    updatePaginationProduct: (page, limit) => updatePaginationProduct(page, limit)(dispatch),
-    changePage: (page, pageSize, idCategory) => updatePaginationVendorProducts(page, pageSize, idCategory)(dispatch),
     updateFilters: (filter) => updateFilters(dispatch, filter),
     resetFilters: (filter) => resetFilters(dispatch, filter),
 })

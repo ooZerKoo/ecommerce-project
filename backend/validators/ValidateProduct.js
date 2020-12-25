@@ -65,7 +65,9 @@ const ValidateProduct = {
                 discountType: discountType,
                 symbol: symbol,
                 quantity: getInteger(quantity),
-                url: urlCoded
+                url: urlCoded,
+                category: category,
+                price: getFloat(price),
             }
             req.product = product
             next()

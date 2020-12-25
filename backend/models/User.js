@@ -26,6 +26,7 @@ const UserSchema = mongoose.Schema({
     },
     cart: Array,
     token: String,
+    address: [String]
 }, {
     toJSON: {
         transform: function (req, res) {

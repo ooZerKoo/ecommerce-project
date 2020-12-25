@@ -35,11 +35,11 @@ export const setProductDataById = (idProduct) => {
     }
 }
 
-export const getAllProducts = (pagination, id) => {
+export const getAllProducts = (id) => {
     return dispatch => {
         setLoading(dispatch, 'products')
         setTotalPaginationProducts()(dispatch)
-        apiGetAllProducts(pagination)
+        apiGetAllProducts()
             .then(data => setProducts(dispatch, data, id))
     }
 }
@@ -78,13 +78,4 @@ export const setImagesData = (dispatch, list) => {
         type: 'SET_PRODUCT_IMAGES',
         payload: list
     })
-}
-
-// pagination
-export const updatePaginationVendorProducts = (page, limit, idCategory) => {
-    return dispatch => {
-        setPagePagination(dispatch, page)
-        setLimitPagination(dispatch, limit)
-        getAllProducts({page, limit})(dispatch)
-    }
 }

@@ -47,6 +47,17 @@ const categories = (state = initialStateCategories, action) => {
                 loading: false,
                 loaded: true,
             }
+        
+        case 'UPDATE_CATEGORIES':
+            const newState = state.list
+            const category = action.payload
+            const returnState = newState.filter(v => v._id !== category._id)
+            returnState.push(category)
+            return {
+                loading: false,
+                loaded: true,
+                list: newState,
+            }
 
         case 'SET_CATEGORIES_LOADING':
             return {

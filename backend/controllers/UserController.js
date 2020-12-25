@@ -82,7 +82,35 @@ const UserController = {
         } catch (error) {
             showError(res, error.message)
         }
-    }
+    },
+    async addUserAddress(req, res) {
+        try {
+            const idUser = req.user._id
+            const address = req.address._id
+            await User.findByIdAndUpdate(idUser, {
+                $push: {
+                    address: address
+                }
+            })
+            return showSuccess(res, 1005)
+        } catch (error) {
+            showError(res, error.message)
+        }
+    },
+    async removeUserAddress(req, res) {
+        try {
+            const idUser = req.user._id
+            const address = req.address._id
+            await User.findByIdAndUpdate(idUser, {
+                $pull: {
+                    address: address
+                }
+            })
+            return showSuccess(res, 1007)
+        } catch (error) {
+            showError(res, error.message)
+        }
+    },
 }
 
 module.exports = UserController

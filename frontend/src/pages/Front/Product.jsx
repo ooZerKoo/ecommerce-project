@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import AddProductButton from '../../components/Button/AddProductButton'
 import ProductPrice from '../../components/Product/ProductPrice'
+import Html from '../../components/Html/Html'
 
 import { setProductDataByUrl } from '../../services/redux/actions/product'
 import { Row, Col, Carousel, Image, Skeleton } from 'antd'
@@ -43,7 +44,7 @@ const Product = props => {
             </Col>
             <Col xs={24} sm={24} md={12} lg={16} xl={16}>
                 <h1>{props.product.name}</h1>
-                <div dangerouslySetInnerHTML={{ __html: props.product.description }}></div>
+                <Html html={props.product.description}/>
                 <ProductPrice product={props.product} />
                 <AddProductButton idProduct={idProduct} />
             </Col>

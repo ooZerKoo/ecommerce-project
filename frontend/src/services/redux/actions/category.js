@@ -38,3 +38,10 @@ export const updatePaginationCategory = (page, limit, idCategory) => {
         setProductsData(idCategory, {page, limit})(dispatch)
     }
 }
+
+export const updateCategories = (dispatch, category) => {
+    return dispatch({
+        type: 'UPDATE_CATEGORIES',
+        payload: category
+    })
+}

@@ -12,3 +12,36 @@ export const apiGetCategories = async () => {
         console.error(error)
     }
 }
+
+export const apiGetCategoryById = async (idCategory) => {
+    try {
+        const url = base
+        const r = await axios.get(url + '/' + idCategory)
+        return r.data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const apiUpdateCategory = async (idCategory, category) => {
+    try {
+        if (idCategory === 'add') {
+            return apiAddCategory(category)
+        }
+        const url = base + '/' + idCategory
+        const r = await axios.post(url, {...category})
+        return r
+    } catch (error) {
+        console.error(error)
+    } 
+}
+
+export const apiAddCategory = async (category) => {
+    try {
+        const url = base
+        const r = await axios.post(url, {...category})
+        return r
+    } catch (error) {
+        console.error(error)
+    } 
+}

@@ -19,6 +19,9 @@ import User from './pages/Front/User'
 // vendor
 import ProductListVendor from './pages/Vendor/ProductListVendor'
 import ProductVendor from './pages/Vendor/ProductVendor'
+import CategoryListVendor from './pages/Vendor/CategoryListVendor'
+import CategoryVendor from './pages/Vendor/CategoryVendor'
+
 import CartContent from './components/Cart/CartContent'
 
 import './App.scss';
@@ -59,11 +62,16 @@ const App = props => {
 					<Switch>
 						<Route path="/login" component={Login} exact />
 						<Route path="/user" component={User} exact />
+						
 						<Route path="/user/products" component={ProductListVendor} exact />
 						<Route path="/user/products/add" component={ProductVendor} exact />
 						<Route path="/user/products/:id" component={ProductVendor} exact />
+
+						<Route path="/user/categories" component={CategoryListVendor} exact />
+						<Route path="/user/categories/add" component={CategoryVendor} exact />
+						<Route path="/user/categories/:id" component={CategoryVendor} exact />
+
 						<Route path="/user/orders" component={ProductListVendor} exact />
-						<Route path="/user/categories" component={ProductListVendor} exact />
 						<Route path="/user/customers" component={ProductListVendor} exact />
 						<Route path="/:category/:product" component={Product} exact />
 						<Route path="/:category" component={Category} exact />

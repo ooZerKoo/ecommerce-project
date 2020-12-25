@@ -10,7 +10,6 @@ const ValidateUser = {
     async validateUserLogin(req, res, next) {
         try {
             const { user, password } = req.body
-            console.log(user, password);
             if (!user) {
                 return showError(res, 1004)
             }
