@@ -2,9 +2,6 @@ const User = require('../models/User')
 const {
     showError
 } = require('../controllers/MessageController')
-const {
-    isEmail
-} = require('./ValidateData')
 
 const ValidateAddress = {
     async ValidateAddressData(req, res, next) {

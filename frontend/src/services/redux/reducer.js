@@ -457,6 +457,42 @@ const filters = (state = initialFilters, action) => {
     }
 }
 
+const initialAddresses = {
+    loading: false,
+    loaded: false,
+    list: []
+}
+
+const addresses = (state = initialAddresses, action) => {
+    switch (action.type) {
+        case 'ADD_ADDRESSES':
+            const newState = state.list
+            newState.push(action.payload)
+            return {
+                loading: false,
+                loaded: true,
+                list: newState
+            }
+
+        case 'SET_ADDRESSES':
+            return {
+                loading: false,
+                loaded: true,
+                list: action.payload
+            }
+
+        case 'SET_ADDRESSES_LOADING':
+            return {
+                ...state,
+                loading: true,
+                loaded: false,
+            }
+
+        default:
+            return state
+    }
+}
+
 
 const reducer = combineReducers({
     button,
@@ -471,6 +507,7 @@ const reducer = combineReducers({
     pagination,
     filters,
     breadcrumb,
+    addresses,
 });
 
 export default reducer

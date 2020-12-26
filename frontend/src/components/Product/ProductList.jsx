@@ -27,7 +27,7 @@ const ProductList = props => {
         }
 
         return examples.map(i => (
-            <Col key={'product_' + i} xs={24} sm={12} md={8} lg={6} xl={4}>
+            <Col key={'product_' + i} xs={24} sm={12} md={8} lg={6}>
                 <Card
                     loading={true}
                     hoverable
@@ -41,7 +41,7 @@ const ProductList = props => {
 
     const renderProduct = (item) => {
         return (
-            <Col key={item._id} xs={24} sm={12} md={8} lg={6} xl={4}>
+            <Col key={item._id} xs={24} sm={12} md={8} lg={6}>
                 <NavLink to={props.urlCategory + '/' + item.url}>
                     <Card
                         hoverable

@@ -1,4 +1,4 @@
-import { apiGetUser, apiSetLogin, apiSetRegister } from '../../api/user'
+import { apiDeleteAddress, apiGetAddresses, apiGetUser, apiSetLogin, apiSetRegister, apiUpdateAddress } from '../../api/user'
 import { addError, resetError, setLoaded, setLoading } from './global'
 
 export const setLogout = (dispatch) => {
@@ -55,3 +55,30 @@ export const setUserToken = token => {
     }
 }
 
+// addresses
+export const updateAddress = (token, address, idAddress) => {
+    return dispatch => {
+        apiUpdateAddress(token, address, idAddress)
+            .then(data => {
+                setAddresses(token)(dispatch)
+            })
+    }
+}
+
+export const deleteAddress = (token, idAddress) => {
+    return dispatch => {
+        apiDeleteAddress(token, idAddress)
+            .then(() => setAddresses(token)(dispatch))
+    }
+}
+
+export const setAddresses = token => {
+    return dispatch => {
+        setLoading(dispatch, 'addresses')
+        apiGetAddresses(token)
+            .then(data => dispatch({
+                type:'SET_ADDRESSES',
+                payload: data})
+            )
+    }
+}
