@@ -15,6 +15,8 @@ import Category from './pages/Front/Category'
 import Product from './pages/Front/Product'
 import Login from './pages/Front/Login'
 import User from './pages/Front/User'
+import Cart from './pages/Front/Cart'
+import Address from './pages/Front/Address'
 
 // vendor
 import ProductListVendor from './pages/Vendor/ProductListVendor'
@@ -22,7 +24,7 @@ import ProductVendor from './pages/Vendor/ProductVendor'
 import CategoryListVendor from './pages/Vendor/CategoryListVendor'
 import CategoryVendor from './pages/Vendor/CategoryVendor'
 
-import CartContent from './components/Cart/CartContent'
+import CartDrawer from './components/Cart/CartDrawer'
 
 import './App.scss';
 import 'antd/dist/antd.css';
@@ -62,6 +64,8 @@ const App = props => {
 					<Switch>
 						<Route path="/login" component={Login} exact />
 						<Route path="/user" component={User} exact />
+						<Route path="/cart" component={Cart} exact />
+						<Route path="/cart/address" component={Address} exact />
 						
 						<Route path="/user/products" component={ProductListVendor} exact />
 						<Route path="/user/products/add" component={ProductVendor} exact />
@@ -78,7 +82,7 @@ const App = props => {
 						<Route path="/" component={Home} exact />
 					</Switch>
 				</Content>
-				<CartContent />
+				<CartDrawer />
 				<Footer className='text-center'>Ant Design ©2018 Created by Ant UED</Footer>
 			</Layout>
 		</BrowserRouter>

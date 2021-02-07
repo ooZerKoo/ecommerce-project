@@ -19,7 +19,7 @@ const AddProductButton = props => {
             type="primary"
             icon={<ShoppingCartOutlined />}
             loading={button ? button.loading : false}
-            onClick={() => props.addToCart(props.cart.token, props.idProduct, 1)}
+            onClick={() => props.addToCart(props.cart.token, props.idProduct, 1, true)}
         >
             Añadir al Carrito
         </Button>
@@ -34,7 +34,7 @@ const mapSateToProps = (state, extra) => ({
 
 const mapDispatchToProps = dispatch => ({
     setButton: (idProduct) => setButton(dispatch, idProduct),
-    addToCart: (cartToken, idProduct, quantity) => addToCart(cartToken, idProduct, quantity)(dispatch),
+    addToCart: (cartToken, idProduct, quantity, toggle) => addToCart(cartToken, idProduct, quantity, toggle)(dispatch),
     setLoading: (idProduct) => setLoading(dispatch, 'button', idProduct)
 })
 

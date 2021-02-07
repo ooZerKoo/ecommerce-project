@@ -24,14 +24,16 @@ export const setCart = (cartToken) => {
     }
 }
 
-export const addToCart = (token, idProduct, quantity) => {
+export const addToCart = (token, idProduct, quantity, toggle) => {
     return dispatch => {
         setLoading(dispatch, 'button', idProduct)
         apiAddToCart(token, idProduct, quantity)
             .then(items => {
                 updateCart(dispatch, items)
                 setLoaded(dispatch, 'button', idProduct)
-                openCart(dispatch)
+                if (toggle) {
+                    openCart(dispatch)
+                }
             })
     }
 }
