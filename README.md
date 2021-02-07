@@ -14,7 +14,7 @@ _Se ejecuta en el puerto 3000_
 #### Instalar e Iniciar
 
 ```
-cd /backend
+cd /frontend
 npm i
 npm start
 ```

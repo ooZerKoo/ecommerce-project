@@ -2,20 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 
-import LoginForm from '../../components/Forms/LoginForm'
+import RegisterForm from '../../components/Forms/RegisterForm'
 
 
-const Login = props => {
+const Register = props => {
     if (props.user.token) {
         return <Redirect to='/user' />
     }
-    return <LoginForm />
+    return <RegisterForm />
 }
 
 const mapStateToProps = state => ({
     user: state.user
 })
 
-const connected = connect(mapStateToProps)(Login)
+const connected = connect(mapStateToProps)(Register)
 
 export default connected

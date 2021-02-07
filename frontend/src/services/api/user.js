@@ -30,7 +30,7 @@ export const apiGetUser = async (token) => {
 
 export const apiSetRegister = async (user, email, password, password2) => {
     try {
-        const url = base + '/login'
+        const url = base + '/register'
         delete axios.defaults.headers.common["Authorization"]
         const r = await axios.post(url, {
             user,

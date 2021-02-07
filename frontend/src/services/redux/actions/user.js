@@ -17,7 +17,6 @@ export const setLogin = (user, password) => {
                     const token = response.data
                     setLoading(dispatch, 'user')
                     setUserToken(token)(dispatch)
-                    
                 } else {
                     addError(dispatch, response.data)
                 }
@@ -29,7 +28,15 @@ export const setLogin = (user, password) => {
 export const setRegister = (user, email, password, password2) => {
     return dispatch => {
         apiSetRegister(user, email, password, password2)
-            .then(console.log)
+            .then(response => {
+                if (response.status === 200) {
+                    const token = response.data
+                    setLoading(dispatch, 'user')
+                    setUserToken(token)(dispatch)
+                } else {
+                    addError(dispatch, response.data)
+                }
+            })
             .catch(console.error)
     }
 }

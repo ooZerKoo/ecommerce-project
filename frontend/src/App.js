@@ -14,6 +14,7 @@ import Home from './pages/Front/Home'
 import Category from './pages/Front/Category'
 import Product from './pages/Front/Product'
 import Login from './pages/Front/Login'
+import Register from './pages/Front/Register'
 import User from './pages/Front/User'
 import Cart from './pages/Front/Cart'
 import Address from './pages/Front/Address'
@@ -63,6 +64,7 @@ const App = props => {
 				<Content className='container'>
 					<Switch>
 						<Route path="/login" component={Login} exact />
+						<Route path="/register" component={Register} exact />
 						<Route path="/user" component={User} exact />
 						<Route path="/cart" component={Cart} exact />
 						<Route path="/cart/address" component={Address} exact />
